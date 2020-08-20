@@ -1,2 +1,17 @@
 <h1>Show</h1>
 <p><%= @product.title %></p>
+<p>Product type: <%= @product.product_type %></p>
+<p><%= raw @product.body_html %></p>
+<% @product.variants.each do |v| %>
+  <%= v.title %> - <%= v.price %>
+<% end %>
+<% unless @product_metafields.empty? %>
+  <ul>
+    <% @product_metafields.each do |metafield| %>
+      <li><%= metafield %></li>
+    <% end %>
+  </ul>
+<% end %>
+<% @product.images.each do |image| %>
+  <img src="<%= image.src %>" alt="<%= @product.title %>">
+<% end %>
