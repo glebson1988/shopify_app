@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root 'home#index'
   mount ShopifyApp::Engine, at: '/'
+  resources :home
 end
