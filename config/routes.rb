@@ -3,5 +3,6 @@
 Rails.application.routes.draw do
   root 'home#index'
   mount ShopifyApp::Engine, at: '/'
-  resources :home
+  resources :home, only: %i[index show edit]
+  post 'discounts', to: 'discounts#create'
 end
