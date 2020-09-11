@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :stored_products
+    end
+  end
   root 'api/v1/home#index'
   mount ShopifyApp::Engine, at: '/'
   resources :home, only: %i[index show edit]

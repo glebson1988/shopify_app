@@ -9,16 +9,16 @@ class ProductList extends Component {
     }
 
     renderProduct = (product) => {
-        const {id, title, image} = product;
+        const {id, shopify_title, shopify_image_url} = product;
 
         return (
             <ResourceList.Item
                 id={id}
-                accessibilityLabel={`details for ${title}`}
+                accessibilityLabel={`details for ${shopify_title}`}
             >
                 <Stack>
-                    <img src={image.src} style={{width: '100px'}}/>
-                    <h3><TextStyle>{title}</TextStyle></h3>
+                    <img src={shopify_image_url} style={{width: '100px'}}/>
+                    <h3><TextStyle>{shopify_title}</TextStyle></h3>
                 </Stack>
             </ResourceList.Item>
         );
