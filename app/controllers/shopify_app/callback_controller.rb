@@ -6,13 +6,9 @@ module ShopifyApp
     include ShopifyApp::LoginProtection
 
     def callback
-      unless auth_hash
-        return respond_with_error
-      end
+      return respond_with_error unless auth_hash
 
-      if jwt_request? && !valid_jwt_auth?
-        return respond_with_error
-      end
+      return respond_with_error if jwt_request? && !valid_jwt_auth?
 
       if jwt_request?
         set_shopify_session
@@ -21,9 +17,7 @@ module ShopifyApp
         reset_session_options
         set_shopify_session
 
-        if redirect_for_user_token?
-          return redirect_to(login_url_with_optional_shop)
-        end
+        return redirect_to(login_url_with_optional_shop) if redirect_for_user_token?
 
         install_webhooks
         install_scripttags
