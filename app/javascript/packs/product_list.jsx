@@ -25,11 +25,21 @@ class ProductList extends Component {
     };
 
     render() {
-        const {products} = this.props
+        const {products, static_text} = this.props
         return (
-            <AppProvider i18n={en}>
+            <AppProvider
+                i18n={{
+                    Polaris: {
+                        ResourceList: {
+                            showing: static_text.number_items_showing,
+                            defaultItemSingular: static_text.item,
+                            defaultItemPlural: static_text.items
+                        }
+                    }
+                }}
+            >
                 <Page
-                    title='My first App with Polaris'
+                    title={static_text.title}
                 >
                     <Card>
                         <ResourceList
