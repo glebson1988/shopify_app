@@ -3,7 +3,13 @@
 class Api::V1::StoredProductsController < ShopifyApp::AuthenticatedController
   before_action :set_stored_product, only: %i[edit update destroy]
 
-  def edit; end
+  def edit
+    if @stored_product.shop_id == @shop.id
+      @product_images = @stored_product.product_images
+    else
+      redirect_to root_path
+    end
+  end
 
   def update
     respond_to do |format|
