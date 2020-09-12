@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {AppProvider, Page, Stack, TextStyle, Card, ResourceList} from "@shopify/polaris";
-import en from '@shopify/polaris/locales/en.json';
+import Routes from '../routes.js.erb';
 
 class ProductList extends Component {
     constructor(props) {
@@ -16,10 +16,12 @@ class ProductList extends Component {
                 id={id}
                 accessibilityLabel={`details for ${shopify_title}`}
             >
-                <Stack>
-                    <img src={shopify_image_url} style={{width: '100px'}}/>
-                    <h3><TextStyle>{shopify_title}</TextStyle></h3>
-                </Stack>
+                <a href={Routes.edit_api_v1_stored_product_path({id: id})}>
+                    <Stack>
+                        <img src={shopify_image_url} style={{width: '100px'}}/>
+                        <h3><TextStyle>{shopify_title}</TextStyle></h3>
+                    </Stack>
+                </a>
             </ResourceList.Item>
         );
     };
