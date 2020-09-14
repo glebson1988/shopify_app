@@ -14,9 +14,22 @@ class Api::V1::StoredProductsController < ShopifyApp::AuthenticatedController
 
   def update
     respond_to do |format|
+      @stored_product.blocks.destroy_all
+
+      # rebuild all the new blocks
+      params[:blocks].each do |block|
+        Block.where(block_id: block['block_id']).first_or_create do |this_block|
+          this_block.image_url = block['image_url']
+          this_block.block_type = block['block_type']
+          this_block.block_id = block['block_id']
+          this_block.block_text = block['block_text']
+          this_block.stored_product_id = @stored_product.id
+        end
+      end
+
       if @stored_product.update(stored_product_params)
-        format.html { redirect_to @stored_product, notice: 'Stored product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @stored_product }
+        format.html { redirect_to api_v1_stored_product_url, notice: 'Stored product was successfully updated.' }
+        format.json { render :show, status: :ok, location: api_v1_stored_product_url }
       else
         format.html { render :edit }
         format.json { render json: @stored_product.errors, status: :unprocessable_entity }
@@ -39,6 +52,9 @@ class Api::V1::StoredProductsController < ShopifyApp::AuthenticatedController
   end
 
   def stored_product_params
-    params.fetch(:stored_product, {})
+    params.fetch(:stored_product, {}).permit(:shopify_id,
+                                             :shopify_title, :shopify_image_url,
+                                             :lookbook_html, :shop_id, :id, :shopify_handle, :created_at,
+                                             :updated_at)
   end
 end

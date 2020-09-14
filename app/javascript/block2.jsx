@@ -8,7 +8,7 @@ class Block2 extends Component {
         return (
             <div style={{display: 'flex', alignItems: 'center'}}>
                 <img src={image_url} style={{width: '50%'}} alt=""/>
-                <p contentEditable={"true"} style={{width: '50%', textAlign: 'center', padding: '60px'}}>{blockText}</p>
+                <p contentEditable={"true"} suppressContentEditableWarning={true} style={{width: '50%', textAlign: 'center', padding: '60px'}}>{blockText}</p>
             </div>
         )
     }
