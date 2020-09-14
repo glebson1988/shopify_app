@@ -2,10 +2,20 @@ import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import {AppProvider, Page, Stack, Button, Modal, Card, ResourceList} from "@shopify/polaris";
 import en from '@shopify/polaris/locales/en.json';
+import Block1 from "../block1";
+import Block2 from "../block2";
+import Block3 from "../block3";
 
 class ProductEdit extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            blocks: [],
+            resourcePickerOpen: false,
+            currentBlockType: 'Block1',
+            save_loading: false,
+            save_disabled: true
+        }
     }
 
     render() {

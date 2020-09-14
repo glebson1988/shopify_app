@@ -6,6 +6,7 @@ class Api::V1::StoredProductsController < ShopifyApp::AuthenticatedController
   def edit
     if @stored_product.shop_id == @shop.id
       @product_images = @stored_product.product_images
+      @blocks = @stored_product.blocks
     else
       redirect_to root_path
     end

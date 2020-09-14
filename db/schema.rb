@@ -12,9 +12,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_911_174_811) do
+ActiveRecord::Schema.define(version: 20_200_914_072_431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'blocks', force: :cascade do |t|
+    t.string 'block_id'
+    t.string 'block_type'
+    t.text 'block_text'
+    t.string 'image_url'
+    t.text 'lookbook_html'
+    t.bigint 'stored_product_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['stored_product_id'], name: 'index_blocks_on_stored_product_id'
+  end
 
   create_table 'product_images', force: :cascade do |t|
     t.string 'image_url'
@@ -55,6 +67,7 @@ ActiveRecord::Schema.define(version: 20_200_911_174_811) do
     t.index ['shopify_user_id'], name: 'index_users_on_shopify_user_id', unique: true
   end
 
+  add_foreign_key 'blocks', 'stored_products'
   add_foreign_key 'product_images', 'stored_products'
   add_foreign_key 'stored_products', 'shops'
 end

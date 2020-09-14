@@ -5,7 +5,8 @@
                 data: {
                     static_text: t('static_text'),
                     product: @stored_product,
-                    product_images: @product_images
+                    product_images: @product_images,
+                    blocks: @blocks
                 }.to_json do %>
 <% end %>
 <%= javascript_pack_tag 'product_edit' %>
