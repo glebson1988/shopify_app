@@ -17,4 +17,7 @@ ShopifyApp.configure do |config|
   config.shop_session_repository = 'Shop'
   config.user_session_repository = 'User'
   config.allow_jwt_authentication = true
+  config.scripttags = [{
+    event: 'onload', src: 'https://gleb-test-store.myshopify.com/test.js/'
+  }]
 end

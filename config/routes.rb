@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'discounts', to: 'discounts#create'
   namespace :api do
     namespace :v1 do
+      get 'front_end/index'
       get 'home/index'
       resources :stored_products
     end
