@@ -6,9 +6,9 @@
     <title><%= application_name %></title>
     <%= stylesheet_link_tag 'application' %>
     <% if ShopifyApp.use_webpacker? %>
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application' %>
     <% else %>
-      <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
+      <%= javascript_include_tag 'application' %>
     <% end %>
     <%= csrf_meta_tags %>
     <link
